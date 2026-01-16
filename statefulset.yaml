@@ -32,7 +32,7 @@ spec:
             - name: KC_HTTP_ENABLED
               value: "true"
             - name: KC_HOSTNAME
-              value: auth.ryzen.me
+              value: https://auth.ryzen.me
             - name: KC_HEALTH_ENABLED
               value: "true"
             - name: 'KC_CACHE'

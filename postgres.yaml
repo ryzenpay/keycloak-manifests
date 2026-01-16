@@ -4,7 +4,7 @@ metadata:
   name: keycloak-postgresql
   namespace: keycloak
 spec:
-  instances: 3
+  instances: 1
   storage:
     size: 5Gi
     storageClass: retain

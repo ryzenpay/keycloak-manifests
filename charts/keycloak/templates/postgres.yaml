@@ -1,8 +1,8 @@
 {{ if not .Values.database.existing }}
-apiVersion: databaseql.cnpg.io/v1
+apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: keycloak-databaseql
+  name: keycloak-postgresql
   namespace: {{ .Release.Namespace }}
 spec:
   instances: {{ .Values.database.instances }}

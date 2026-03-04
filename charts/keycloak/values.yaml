@@ -1,7 +1,3 @@
-discovery:
-  clusterIP: ""
-  type: ClusterIP
-
 image:
   image: quay.io/keycloak/keycloak
   tag: latest

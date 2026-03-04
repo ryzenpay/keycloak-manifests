@@ -8,5 +8,5 @@ metadata:
 spec:
   selector:
     app: keycloak
-  clusterIP: {{ .Values.discovery.clusterIP }}
-  type: {{ .Values.discovery.type }}
+  clusterIP: None
+  type: ClusterIP

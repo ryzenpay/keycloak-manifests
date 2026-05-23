@@ -16,6 +16,21 @@ spec:
       labels:
         app: keycloak
     spec:
+      {{- if .Values.theme.url }}
+      initContainers:
+        - name: theme-provider
+          image: curlimages/curl:latest
+          command:
+            - sh
+            - -c
+            - curl -fsSL -o /providers/custom-theme.jar "$(THEME_URL)"
+          env:
+            - name: THEME_URL
+              value: {{ .Values.theme.url | quote }}
+          volumeMounts:
+            - name: theme
+              mountPath: /providers
+      {{- end }}
       containers:
         - name: keycloak
           image: {{ print .Values.image.image ":" .Values.image.tag }}
@@ -69,6 +84,12 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.database.secret.name }}
                   key: {{ .Values.database.secret.usernameKey }} 
+          {{- if .Values.theme.url }}
+          volumeMounts:
+            - name: theme
+              mountPath: /opt/keycloak/providers/custom-theme.jar
+              subPath: custom-theme.jar
+          {{- end }}
           ports:
             - name: http
               containerPort: 8080
@@ -94,3 +115,8 @@ spec:
               port: 9000
             periodSeconds: 10
             failureThreshold: 3
+      {{- if .Values.theme.url }}
+      volumes:
+        - name: theme
+          emptyDir: {}
+      {{- end }}

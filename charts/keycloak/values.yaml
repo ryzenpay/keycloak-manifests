@@ -16,6 +16,9 @@ config:
     password: ""
     passwordKey: ADMIN_PASSWORD
 
+theme:
+  url: ""
+
 ingress:
   enabled: false
   className: traefik

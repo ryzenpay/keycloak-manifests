@@ -16,6 +16,13 @@ spec:
       labels:
         app: keycloak
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: keycloak
+              topologyKey: kubernetes.io/hostname
       {{- if .Values.theme.url }}
       initContainers:
         - name: theme-provider
